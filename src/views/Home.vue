@@ -1,3 +1,5 @@
+<!-- fixes needed : SHOW details not working -->
+
 <template>
   <div class="home">
     <h1>New Movie</h1>
@@ -19,7 +21,13 @@
     <h1>All Movies</h1>
     <div v-for="movie in movies">
       <h2>{{movie.title}}</h2>
-      
+      <button v-on:click="showMoreDetails">Show Details</button>
+      <div v-if="currentMovie === movie">
+        <p>Year: {{ movie.year }}</p>
+        <p>Plot: {{ movie.plot }}</p>
+        <p>Director: {{ movie.director }}</p>
+        <p>English: {{ movie.english }}</p> 
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +42,7 @@ export default {
     return {
       message: "Movie App!",
       movies: [],
+      currentMovie: {},
       newMovieTitle: "",
       newMovieYear: "",
       newMoviePlot: "",
@@ -63,7 +72,13 @@ export default {
         this.newMovieDirector = "";
         this.newMovieEnglish = "";
       });
-
+    },
+    showMoreDetails: function(movie) {
+      if (this.currentMovie === movie) {
+        this.currentMovie = {};
+      } else {
+        this.currentMovie = movie;
+      }
     }
   }
 };
