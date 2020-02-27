@@ -7,6 +7,7 @@
     <div>
       Title: {{movie.title}}<br>
       Year & Plot: {{movie.year}} - {{movie.plot}}<br>
+      <router-link :to="`/movies/${movie.id}/edit`"> Edit </router-link>
       <p>--</p>
     </div>
   </div>
