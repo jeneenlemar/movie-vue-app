@@ -28,6 +28,7 @@
         </div>
         <input type="submit" class="btn btn-primary" value="Update Movie">
       </form>
+      <button v-on:click="destroyMovie()">Delete Movie</button>
     </div>
   </div>
 </template>
@@ -65,6 +66,13 @@ export default {
         })
         .catch(error => {
           this.errors = error.response.data.errors;
+        });
+    },
+    destroyMovie: function() {
+      axios.delete(`/api/movies/${this.movie.id}`)
+        .then(response => {
+          console.log("Success", response.data);
+          this.$router.push("/movies");
         });
     }
   }
