@@ -2,12 +2,13 @@
 
 <template>
   <div class="movies-index">
+    
     <h1>{{ message }}</h1>
     <div v-for="movie in movies">
       Title: {{movie.title}}<br>
-      Year & Plot: {{movie.year}} - {{movie.plot}}<br>
-      <p>--</p>
-      
+      Year {{movie.year}} <br>
+      <router-link :to="`/movies/${movie.id}`">See Details</router-link>
+      <p>--</p> 
     </div>
       
   </div>
