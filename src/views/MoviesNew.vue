@@ -17,7 +17,9 @@
         </div>
         <div class="form-group">
           <label>Plot</label>
-          <input type="text" class="form-control" v-model="plot">
+          <input type="text" class="form-control" v-model="plot"><br>
+          <!-- <small>characters remaining</small> -->
+          <small v-if="plot" v-bind:class="{fancy: plot.length > 3}"> {{ 20 - plot.length }} characters remaining</small>
         </div>
         <div class="form-group">
           <label>Director</label>
@@ -32,6 +34,12 @@
     </div>
   </div>
 </template>
+
+<style>
+  .fancy {
+    color: red;
+  }
+</style>
 
 <script>
 import axios from "axios";

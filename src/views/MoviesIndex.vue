@@ -4,7 +4,7 @@
   <div class="movies-index">
     
     <h1>{{ message }}</h1>
-    <div v-for="movie in movies">
+    <div v-for="movie in movies" v-on:click="currentMovie = movie" v-bind:class="{ selected: movie === currentMovie }">
       Title: {{movie.title}}<br>
       Year {{movie.year}} <br>
       <router-link :to="`/movies/${movie.id}`">See Details</router-link>
@@ -15,6 +15,11 @@
 </template>
 
 <style>
+.selected {
+  color: white;
+  background-color: grey;
+  
+}
 </style>
 
 <script>
@@ -23,7 +28,8 @@ export default {
   data: function() {
     return {
       message: "Movie List",
-      movies: []
+      movies: [],
+      currentMovie: {}
     };
   },
   created: function() {
